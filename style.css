@@ -1,0 +1,72 @@
+:root {
+    --text: 'Yatra One', cursive;
+}
+
+body {
+    margin: 0;
+    background-image: url('/images/background-img.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.navbar {
+    margin-top: 1.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    width: 100%;
+}
+
+.logo {
+    font-family: var(--text);
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+}
+
+.btn {
+    font-family: var(--text);
+}
+
+.main {
+    text-align: center;
+}
+
+#content-title {
+    color: white;
+    font-family: var(--text);
+    font-size: 50px;
+    padding-top: 2em;
+}
+
+span {
+    display: block;
+    color: white;
+    font-family: var(--text);
+    font-size: 25px;
+}
+
+#title {
+    margin-top: 2em;
+    font-size: 50px;
+    margin-bottom: 0.5em;
+}
+
+#sing-up-btn {
+    margin-top: 2em;
+}
+
+/*footer*/
+
+.footer {
+    color: white;
+    font-family: 'Yatra One', cursive;
+    text-align: center;
+    position: fixed;
+    height: 3em;
+    left: 0;
+    bottom: 0;
+    margin-right: 1em;
+    width: 100%;
+    padding-top: 0.5em;
+}
+
