@@ -2,11 +2,12 @@
     --text: 'Yatra One', cursive;
 }
 
-body {
-    margin: 0;
-    background-image: url('/images/background-img.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
+body { 
+    background: url(/images/background-img.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .navbar {
@@ -16,7 +17,7 @@ body {
     width: 100%;
 }
 
-.logo {
+#logo {
     font-family: var(--text);
     font-size: 35px;
     color: white;
@@ -27,7 +28,7 @@ body {
     font-family: var(--text);
 }
 
-.main {
+#main {
     text-align: center;
 }
 
