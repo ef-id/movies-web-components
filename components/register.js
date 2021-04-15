@@ -1,6 +1,7 @@
 import { html, render } from 'https://unpkg.com/lit-html?module';
+import { register } from '../services/authServices.js'
 
-let register = (ctx) => html`
+let registerTemplate = (ctx) => html`
     <form action="" id="register-form" @submit = ${ctx.onSubmit}>
         <div class="row">
             <div class="col-md-12">
@@ -61,10 +62,12 @@ class Register extends HTMLElement {
             repPassMsg.style.display='none';
         }
 
+        register(email.value, pass.value)
+
     }
 
     connectedCallback() {
-        render(register(this), this, { eventContext: this })
+        render(registerTemplate(this), this, { eventContext: this })
     }
 }
 
