@@ -120,6 +120,11 @@ span {
     border-radius: 5px;
     font-size: 15px;
     padding: 0 0.5em;
+    margin-top: 0.2em;
     display: none;
 }
+
+/* #email-err-msg{
+    display: none;
+} */
 
