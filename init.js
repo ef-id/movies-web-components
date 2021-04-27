@@ -3,6 +3,7 @@ import {Router} from 'https://unpkg.com/@vaadin/router';
 import Home from './components/home.js';
 import Login from './components/login.js';
 import Register from './components/register.js';
+import { logout } from './services/authServices.js';
 
 
 customElements.define('home-component', Home);
@@ -25,5 +26,12 @@ router.setRoutes([
     {
         path: '/register',
         component: 'register-component',
+    },
+    {
+        path: '/logout',
+        action: () => {
+            logout();
+            Router.go('/');
+        }
     }
 ])
