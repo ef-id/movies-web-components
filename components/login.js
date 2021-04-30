@@ -10,11 +10,10 @@ let loginTemplate = (ctx) => html`
                 <h2 id="login-title">Login</h2>
                 <div class="mb-3 login-input">
                     <input type="text" class="form-control" name="email" placeholder="Email">
-                    <span class="err-msg">Incorrect email!</span>
                 </div>
                 <div class="mb-3 login-input">
                     <input type="password" class="form-control" name="password" placeholder="Password">
-                    <span class="err-msg">Password must contains less 6 characters!</span>
+                    <span class="err-msg" id="login-err">Email or Password are wronged</span>
                 </div>
                 <button class="btn btn-danger" id="login-btn">Login</button>
             </div>
@@ -33,13 +32,19 @@ class Login extends HTMLElement {
         let formData = new FormData(e.target);
         let email = formData.get('email');
         let password = formData.get('password');
+        let loginErrMsg = document.getElementById('login-err');
 
         login(email, password)
             .then(res => {
-                Router.go('/');
+                if(email && password !== ''){
+                    Router.go('/');
+                }else{
+                    loginErrMsg.style.display = 'block';
+                }    
             })
             .catch(err => {
-                console.err("Wrong email or password")
+                console.log(err);
+                loginErrMsg.style.display = 'block';
             })
     }
 
