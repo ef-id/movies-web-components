@@ -18,15 +18,15 @@ class Movies extends HTMLElement {
         getAllMovies()
             .then(movies => {
                 this.movies = movies;
-                render(moviesTemplate(this), this, { eventContext: this })
+                this.render();
             })
         
-            render(moviesTemplate(this), this, { eventContext: this })
+            this.render();
     }
 
-    // render(){
-    //     render(moviesTemplate(this), this, { eventContext: this })
-    // }
+    render(){
+        render(moviesTemplate(this), this, { eventContext: this })
+    }
 }
 
 export default Movies;

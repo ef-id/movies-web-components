@@ -3,6 +3,7 @@ import {Router} from 'https://unpkg.com/@vaadin/router';
 import { html, render } from 'https://unpkg.com/lit-html?module';
 import { login } from '../services/authServices.js';
 
+
 let loginTemplate = (ctx) => html`
     <form action="" id="login-form" @submit=${ctx.onSubmit}>
         <div class="row">
@@ -32,19 +33,14 @@ class Login extends HTMLElement {
         let formData = new FormData(e.target);
         let email = formData.get('email');
         let password = formData.get('password');
-        let loginErrMsg = document.getElementById('login-err');
+        //let loginErrMsg = document.getElementById('login-err');
 
         login(email, password)
             .then(res => {
-                if(email && password !== ''){
-                    Router.go('/');
-                }else{
-                    loginErrMsg.style.display = 'block';
-                }    
+                Router.go('/');
             })
             .catch(err => {
                 console.log(err);
-                loginErrMsg.style.display = 'block';
             })
     }
 

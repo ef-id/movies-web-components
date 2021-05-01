@@ -1,13 +1,11 @@
 import request from './requestService.js';
-import { getUserData } from './authServices.js';
 
 const databaseUrl = 'https://movie-library-60007-default-rtdb.firebaseio.com';
-const id = getUserData();
+
 const api = {
-    movies: `${databaseUrl}/movies/${id.userId}.json`,
+    movies: `${databaseUrl}/movies.json`,
 }
 
-console.log(id.userId);
 
 export const addMovie = async(movieData) => {
     let res = await request(api.movies, 'POST', movieData);
@@ -17,4 +15,16 @@ export const getAllMovies = async () => {
     let res = await request(api.movies, 'GET');
 
     return Object.keys(res).map(key => ({key, ...res[key]}));
+}
+
+export const getOneMovie = async (id) =>{
+    let res = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
+
+    return Object(res, {id});
+}
+
+export const deleteMovie = async (id) => {
+    let res = await request(`${databaseUrl}/movies/${id}.json`, 'DELETE');
+    
+    return res;
 }

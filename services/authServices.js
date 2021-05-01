@@ -38,7 +38,6 @@ export const getUserData = () => {
         return {
             isAuthenticated: Boolean(data.idToken),
             email: data.email,
-            userId: data.localId,
         }
     } catch(error) {
         return {

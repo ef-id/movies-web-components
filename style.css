@@ -153,3 +153,21 @@ movie-card{
     font-size: 30px;
 }
 
+/**************More Detail Section************/
+
+#movie-details{
+    width: 40%;
+    margin: auto;
+    padding-top: 3em;
+}
+#article{
+    width: 50%;
+    font-family: var(--text);
+    color: white;
+    margin-left: 10em;
+    padding-top: 3em;
+}
+#article button{
+    margin-top: 1em;
+    width: 25%;
+}
