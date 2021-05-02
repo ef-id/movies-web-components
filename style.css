@@ -73,21 +73,21 @@ span {
 
 /*****************Login**********************/
 
-#login-form, #add-movie-form {
+#login-form, #add-movie-form, #edit-movie-form {
     padding: 7% 30% 0;
 }
 
-#login-title, #add-movie-title {
+#login-title, #add-movie-title, #edit-movie-title {
     font-family: var(--text);
     color: white;
     padding-bottom: 1em;
 }
 
-.login-input, .add-input {
+.login-input, .add-input, #edit-input {
     padding-bottom: 1.5em;
 }
 
-#login-btn, #add-btn {
+#login-btn, #add-btn, #edit-movie-btn {
     float: right;
 }
 

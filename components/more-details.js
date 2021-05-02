@@ -1,5 +1,6 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
 import {Router} from 'https://unpkg.com/@vaadin/router';
+
 import { getOneMovie } from '../services/moiveServices.js';
 import { getUserData } from '../services/authServices.js';
 import { deleteMovie } from '../services/moiveServices.js';
@@ -13,8 +14,8 @@ const moreDetailsTemplate = (ctx) => html`
         <article class="col-6" id="article">
             <h3>Movie title: ${ctx.title}</h3>
             <h3>Movie Description:</h3><p>${ctx.desc}</p>
-            <button class="btn btn-warning" id="edit-btn">Edit</button>
-            <button class="btn btn-danger" id="deelte-btn" @click=${ctx.deleteMovie}>Delete</button>         
+            <a class="btn btn-warning" id="edit-btn" @click=${ctx.updateMovie}>Edit</a>
+            <a class="btn btn-danger" id="delete-btn" @click=${ctx.deleteMovie}>Delete</a>         
         </article>
     </section>
 `;
@@ -22,8 +23,12 @@ const moreDetailsTemplate = (ctx) => html`
 class MoreDetails extends HTMLElement{
     constructor(){
         super();
-
+        
         this.user = getUserData();
+    }
+
+    updateMovie(){
+        Router.go(`/edit/${this.location.params.id}`)
     }
 
     deleteMovie(){
@@ -34,7 +39,6 @@ class MoreDetails extends HTMLElement{
     }
 
     connectedCallback(){
-
         getOneMovie(this.location.params.id)
             .then(data => {
                 Object.assign(this, data);

@@ -28,3 +28,10 @@ export const deleteMovie = async (id) => {
     
     return res;
 }
+
+export const editMovie = async (id, movieData) => {
+    let res = await request(`${databaseUrl}/movies/${id}.json`, 'PATCH', movieData);
+    
+    return res;
+}
+
