@@ -1,4 +1,4 @@
-import {Router} from 'https://unpkg.com/@vaadin/router';
+import { Router } from 'https://unpkg.com/@vaadin/router';
 
 import { html, render } from 'https://unpkg.com/lit-html?module';
 import { login } from '../services/authServices.js';
@@ -33,14 +33,19 @@ class Login extends HTMLElement {
         let formData = new FormData(e.target);
         let email = formData.get('email');
         let password = formData.get('password');
-        //let loginErrMsg = document.getElementById('login-err');
+        let loginErrMsg = document.getElementById('login-err');
 
         login(email, password)
-            .then(res => {
-                Router.go('/');
+            .then(response => {
+                return response.error ? response.error.code : response;
             })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                if(res >= 400){
+                    loginErrMsg.style.display = 'block';
+                    return;
+                }
+
+                Router.go('/');  
             })
     }
 

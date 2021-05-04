@@ -20,7 +20,8 @@ const editTemplate = (ctx) => html`
                     <input type="text" class="form-control" placeholder="Image Url" id="imgUrl" value="${ctx.imgUrl}">
                     <span class="err-msg">Missing image Url</span>
                 </div>
-                <button class="btn btn-danger" id="edit-movie-btn">Edit Movie</button>
+                <button class="btn btn-warning edit-form-btns" @click="${ctx.back}">Back</button>
+                <button class="btn btn-danger edit-form-btns" id="edit-movie-btn">Edit Movie</button>
             </div>
         </div>
     </form>
@@ -32,6 +33,9 @@ class EditMovie extends HTMLElement{
         super();
     }
 
+    back(){
+        Router.go(`/more-details/${this.location.params.id}`)
+    }
     onSubmit(e){
         e.preventDefault();
 

@@ -39,8 +39,8 @@ router.setRoutes([
         path: '/logout',
         action: (context, commands) => {
             logout();
-            console.log('logged');
             return commands.redirect('/');
+            
         },
     },
     {

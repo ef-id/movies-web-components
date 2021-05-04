@@ -1,7 +1,7 @@
-import {Router} from 'https://unpkg.com/@vaadin/router';
-import {html, render} from 'https://unpkg.com/lit-html?module';
+import { Router } from 'https://unpkg.com/@vaadin/router';
+import { html, render } from 'https://unpkg.com/lit-html?module';
 import { addMovie } from '../services/moiveServices.js';
-
+import { getUserData } from '../services/authServices.js';
 
 const addMovieTemplate = (ctx) => html`
     <form action="" id="add-movie-form" @submit=${ctx.onSubmit}>
@@ -20,15 +20,19 @@ const addMovieTemplate = (ctx) => html`
                     <input type="text" class="form-control" placeholder="Image Url" id="imgUrl">
                     <span class="err-msg">Missing image Url</span>
                 </div>
-                <button class="btn btn-danger" id="add-btn">Add Movie</button>
+                <button class="btn btn-warning add-form-btns" @click="${ctx.back}">Back</button>
+                <button class="btn btn-danger add-form-btns" id="add-btn">Add Movie</button>
             </div>
         </div>
     </form>
 `;
 
 
-class AddMovie extends HTMLElement{
+class AddMovie extends HTMLElement {
 
+    back(){
+        Router.go('/');
+    }
     onSubmit(e) {
         e.preventDefault();
 
@@ -40,40 +44,43 @@ class AddMovie extends HTMLElement{
         let descMsg = desc.nextElementSibling;
         let imgMsg = imgUrl.nextElementSibling;
 
-        if(title.value.length < 2){
-            titleMsg.style.display='block';
+
+        if (title.value.length < 2) {
+            titleMsg.style.display = 'block';
             return;
-        }else{
-            titleMsg.style.display='none';
+        } else {
+            titleMsg.style.display = 'none';
         }
 
-        if(desc.value.length < 3){
-            descMsg.style.display='block';
+        if (desc.value.length < 3) {
+            descMsg.style.display = 'block';
             return;
-        }else{
-            descMsg.style.display='none';
+        } else {
+            descMsg.style.display = 'none';
         }
 
-        if(imgUrl.value.length == ''){
-            imgMsg.style.display='block';
+        if (imgUrl.value.length == '') {
+            imgMsg.style.display = 'block';
             return;
-        }else{
-            imgMsg.style.display='none';
+        } else {
+            imgMsg.style.display = 'none';
         }
+
+        let { email } = getUserData();
 
         addMovie({
+            creator: email,
             title: title.value,
             desc: desc.value,
             imgUrl: imgUrl.value,
         }).then(res => {
-                alert('You added succesfully movie');
                 Router.go('/');
             })
 
     }
 
-    connectedCallback(){
-        render(addMovieTemplate(this), this, { eventContext: this})
+    connectedCallback() {
+        render(addMovieTemplate(this), this, { eventContext: this })
     }
 }
 

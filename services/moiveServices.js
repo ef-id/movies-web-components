@@ -1,4 +1,5 @@
 import request from './requestService.js';
+import { getUserData } from './authServices.js'
 
 const databaseUrl = 'https://movie-library-60007-default-rtdb.firebaseio.com';
 
@@ -14,7 +15,9 @@ export const addMovie = async(movieData) => {
 export const getAllMovies = async () => {
     let res = await request(api.movies, 'GET');
 
-    return Object.keys(res).map(key => ({key, ...res[key]}));
+    let { email } = getUserData();
+
+    return Object.keys(res).map(key => ({key, ...res[key]})).filter(x => x.creator == email);
 }
 
 export const getOneMovie = async (id) =>{

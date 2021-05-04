@@ -1,4 +1,5 @@
 import { html, render } from 'https://unpkg.com/lit-html?module';
+import {Router} from 'https://unpkg.com/@vaadin/router';
 import { register } from '../services/authServices.js'
 
 let registerTemplate = (ctx) => html`
@@ -9,6 +10,7 @@ let registerTemplate = (ctx) => html`
                 <div class="mb-3 reg-input">
                     <input type="text" class="form-control" placeholder="Email" id="email">
                     <span class="err-msg">Incorrect email!</span>
+                    <span class="err-msg" id="email-exists-err">Already exists user with this email!</span>
                 </div>
                 <div class="mb-3 reg-input">
                     <input type="password" class="form-control" placeholder="Password" id="pass">
@@ -35,6 +37,7 @@ class Register extends HTMLElement {
         let email = document.getElementById('email');
         let pass = document.getElementById('pass');
         let repPass = document.getElementById('rep-pass');
+        let existEmailErr = document.getElementById('email-exists-err');
 
         let emailPattern = /^[\w.-]+[@]{1}[a-z]{2,}[.]{1}[a-z]{2,}$/mg;
         let emailMsg = email.nextElementSibling;
@@ -63,7 +66,10 @@ class Register extends HTMLElement {
         }
 
         register(email.value, pass.value)
-
+            .then(res => {
+                res.error ? existEmailErr.style.display='block' : Router.go('/login');
+            })
+            
     }
 
     connectedCallback() {

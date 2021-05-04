@@ -6,7 +6,6 @@ const api = {
     login: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
 }
 
-
 import request from './requestService.js';
 
 export const register = async (email, password) => {
@@ -16,7 +15,7 @@ export const register = async (email, password) => {
     })
 
     localStorage.setItem('auth', JSON.stringify(res));
-
+    
     return res;
 }
 
