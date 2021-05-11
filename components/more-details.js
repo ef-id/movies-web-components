@@ -36,10 +36,12 @@ class MoreDetails extends HTMLElement {
     }
 
     deleteMovie() {
-        deleteMovie(this.location.params.id)
+        if(confirm('Are you sure want to remove the movie?')){
+            deleteMovie(this.location.params.id)
             .then(res => {
                 Router.go('/');
             })
+        }
     }
 
     backHome() {

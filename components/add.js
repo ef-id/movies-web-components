@@ -74,6 +74,7 @@ class AddMovie extends HTMLElement {
             desc: desc.value,
             imgUrl: imgUrl.value,
         }).then(res => {
+                alert('The movie has been successfully added!');
                 Router.go('/');
             })
 

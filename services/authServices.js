@@ -7,6 +7,7 @@ const api = {
 }
 
 import request from './requestService.js';
+import {Router} from 'https://unpkg.com/@vaadin/router';
 
 export const register = async (email, password) => {
     let res = await request(api.register, 'POST', {
@@ -47,5 +48,8 @@ export const getUserData = () => {
 }
 
 export const logout = () => {
+    
     localStorage.setItem('auth', '');
+    document.getElementById("login").style.display = 'block';
+    document.getElementById("logout").style.display = 'none';
 }

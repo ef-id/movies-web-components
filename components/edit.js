@@ -74,12 +74,9 @@ class EditMovie extends HTMLElement{
             imgUrl: imgUrl.value,
         })
             .then(res => {
-                console.log(res);
-                alert('You edited succesfully movie');
+                alert('The movie has been successfully updated!');
                 Router.go(`/more-details/${this.location.params.id}`);
             })
-
-        console.log(this.location.params.id);
     }
 
     connectedCallback(){
